@@ -1,0 +1,24 @@
+@mixin primary-button {
+    display: inline-block;
+    background-color: #5aac44;
+    color: white;
+    transition: .3s;
+    text-align: center;
+    margin: 5px 0 0;
+    padding: 5px 15px;
+    border-radius: 5px;
+    line-height: 21px;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:before {
+        content: "";
+        display: block;
+    }
+    &:hover {
+        background-color: #61bd4f;
+    }
+    &:active {
+        background-color: #49852e;
+    }
+}
