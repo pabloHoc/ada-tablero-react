@@ -1,35 +1,45 @@
-import React, { Component } from 'react';
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import './AddListControl.scss';
+import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
+import WithToggle from 'helpers/WithToggle/WithToggle'
+import ControlledInput from 'helpers/ControlledInput/ControlledInput'
+import './AddListControl.scss'
 
-class AddListControl extends Component {
-    state = {
-        value: ''
-    }
-    handleOnChange = event => {
-        this.setState({ value: event.target.value });
-    }
-    render() { 
-        return ( 
-        <div className='add-list-control'>
-            <input 
-                type='text'
-                value={this.state.value}
-                onChange={this.handleOnChange}
-                className='add-list-input'
-            /> 
-            <div>  
-                <div
-                    className='add-list-button'
-                    onClick={() => this.props.onClick(this.state.value)}
-                >
-                    <FontAwesomeIcon icon={faPlus} />
-                    Añadir lista</div>
+const AddListControl = ({toggleStatus, toggle, value, onChange, onClick}) => (
+    <>
+        {
+            toggleStatus ?
+            <div className='add-list-control'>
+                <input 
+                    type='text'
+                    value={value}
+                    onChange={onChange}
+                    className='add-list-input'
+                /> 
+                <div>  
+                    <div
+                        className='add-list-button'
+                        onClick={() => onClick(value)}
+                    >
+                        <FontAwesomeIcon icon={faPlus} />
+                        Añadir lista
+                    </div>
+                    <FontAwesomeIcon 
+                        icon={faTimes}
+                        onClick={toggle} 
+                    />
+                </div>
             </div>
-        </div> 
-        );
-    }
-}
+            :
+            <div
+                className='show-add-list-button'
+                onClick={toggle}
+            >
+                <FontAwesomeIcon icon={faPlus} />
+                Añadir otra lista
+            </div>
+        }
+    </>             
+    );
  
-export default AddListControl;
+export default ControlledInput(WithToggle(AddListControl));

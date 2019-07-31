@@ -17,16 +17,16 @@ class Dashboard extends Component {
     }
     render() { 
         return (
-                <main className='dashboard'>
-                    {this.state.lists.map((list, index) => 
-                        <List
-                            key={list.title} 
-                            title={list.title} 
-                            cards={list.cards} 
-                            />
-                    )}
-                    <AddListControl onClick={this.addList} />
-                </main>
+            <main className='dashboard'>
+                {this.state.lists.map((list, index) => 
+                    <List
+                        key={list.title} 
+                        title={list.title} 
+                        cards={list.cards} 
+                        />
+                )}
+                <AddListControl onClick={this.addList} />
+            </main>
         );
     }
 }

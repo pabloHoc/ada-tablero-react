@@ -1,4 +1,5 @@
 @import 'styles/abstract/colors';
+@import 'styles/abstract/effects';
 
 .card {
     border-radius: 5px;
@@ -7,7 +8,8 @@
     margin: 8px;
     padding: 8px 12px;
     cursor: pointer;
-
+    @include box-shadow;
+    
     p {
         word-break: break-all;
     }
