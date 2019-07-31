@@ -1,42 +1,30 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import AddInputControl from 'components/AddInputControl/AddInputControl'
+import Button from 'components/Button/Button'
 import WithToggle from 'helpers/WithToggle/WithToggle'
-import ControlledInput from 'helpers/ControlledInput/ControlledInput'
 import './AddCardControl.scss'
 
-const AddCardControl = ({toggleStatus, toggle, value, onChange, onCardAdded}) => (
+const AddCardControl = ({toggleStatus, toggle, onClick}) => (
     <div className='add-card-control'>
         {
             toggleStatus ?
-            <div className='add-card-form'>
-                <textarea
-                    value={value}
-                    onChange={onChange}
-                    className='card-title-input' 
-                    placeholder='Introduzca un título para esta tarjeta'/>
-                <div>
-                    <div 
-                        className='add-card-button'
-                        onClick={() => onCardAdded(value)}
-                    >
-                        Añadir tarjeta</div>
-                        <FontAwesomeIcon 
-                            icon={faTimes}
-                            onClick={toggle} 
-                            />
-                </div>
-            </div>
+            <AddInputControl
+                inputElement='textarea'
+                onClick={onClick}
+                buttonText='Añadir tarea'
+                onToggle={toggle}
+            />
             :
-            <p 
-                className='add-card'
+            <Button 
+                text='Añadir otra tarea'
+                icon={faPlus}
                 onClick={toggle}
-            >
-                <FontAwesomeIcon icon={faPlus} />
-                Añadir una tarjeta
-            </p> 
+                type='link'
+            />
         }
     </div>
-);
+)             
+
  
-export default ControlledInput(WithToggle(AddCardControl));
+export default WithToggle(AddCardControl);

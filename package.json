@@ -13,7 +13,8 @@
     "react-scripts": "3.0.1",
     "react-sortable-hoc": "^1.9.1",
     "react-sortablejs": "^1.5.1",
-    "sortablejs": "^1.6.1"
+    "sortablejs": "^1.6.1",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,45 +1,30 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import Button from 'components/Button/Button'
+import AddInputControl from 'components/AddInputControl/AddInputControl'
 import WithToggle from 'helpers/WithToggle/WithToggle'
-import ControlledInput from 'helpers/ControlledInput/ControlledInput'
 import './AddListControl.scss'
 
-const AddListControl = ({toggleStatus, toggle, value, onChange, onClick}) => (
-    <>
+const AddListControl = ({toggleStatus, toggle, onClick}) => (
+    <div className='add-list-control'>
         {
             toggleStatus ?
-            <div className='add-list-control'>
-                <input 
-                    type='text'
-                    value={value}
-                    onChange={onChange}
-                    className='add-list-input'
-                /> 
-                <div>  
-                    <div
-                        className='add-list-button'
-                        onClick={() => onClick(value)}
-                    >
-                        <FontAwesomeIcon icon={faPlus} />
-                        Añadir lista
-                    </div>
-                    <FontAwesomeIcon 
-                        icon={faTimes}
-                        onClick={toggle} 
-                    />
-                </div>
-            </div>
+            <AddInputControl
+                inputElement='text'
+                onAdd={onClick}
+                buttonText='Añadir lista'
+                buttonIcon={faPlus}
+                onToggle={toggle}
+            />
             :
-            <div
-                className='show-add-list-button'
+            <Button 
+                text='Añadir otra lista'
+                icon={faPlus}
                 onClick={toggle}
-            >
-                <FontAwesomeIcon icon={faPlus} />
-                Añadir otra lista
-            </div>
+                type='primary'
+            />
         }
-    </>             
-    );
+    </div>             
+);
  
-export default ControlledInput(WithToggle(AddListControl));
+export default WithToggle(AddListControl);

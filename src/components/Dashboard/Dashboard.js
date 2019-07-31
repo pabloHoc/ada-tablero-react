@@ -1,34 +1,38 @@
-import React, { Component } from 'react';
-import List from 'components/List/List';
-import './Dashboard.scss';
-import AddListControl from 'components/AddListControl/AddListControl';
-
+import React, { Component } from 'react'
+import uuid from 'uuid/v4'
+import List from 'components/List/List'
+import AddInputControl from 'components/AddInputControl/AddInputControl'
+import './Dashboard.scss'
 
 class Dashboard extends Component {
     state = {
         lists: []
     }
     handleOnChange = event => {
-        this.setState({ value: event.target.value });
+        this.setState({ value: event.target.value })
     }
     addList = title => {
-        const newList = { title: title, cards: [] }
+        const newList = { 
+            id: uuid(), 
+            title: title, 
+            cards: [] 
+        }
         this.setState({ lists: [...this.state.lists, newList] });
     }
     render() { 
         return (
             <main className='dashboard'>
-                {this.state.lists.map((list, index) => 
+                {this.state.lists.map(list => 
                     <List
-                        key={list.title} 
+                        key={list.id} 
                         title={list.title} 
                         cards={list.cards} 
-                        />
+                    />
                 )}
-                <AddListControl onClick={this.addList} />
+                <AddInputControl onClick={this.addList} />
             </main>
         );
     }
 }
  
-export default Dashboard;
+export default Dashboard
